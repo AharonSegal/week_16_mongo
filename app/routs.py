@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-import dal
+from app import dal
 
 router = APIRouter()
 
