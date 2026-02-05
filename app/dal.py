@@ -1,5 +1,4 @@
-from connection import collection
-from connection import collection
+from app.connection import collection
 
 # 1 ----------------- 
 def get_engineering_high_salary_employees():
