@@ -1,7 +1,7 @@
 from connection import collection
 from connection import collection
 
-# 1 -----------------
+# 1 ----------------- 
 def get_engineering_high_salary_employees():
     filter_query = {"job_role.department": "Engineering", "salary": {"$gt": 65000}}
     projection = {"_id": 0, "employee_id": 1, "name": 1, "salary": 1}
