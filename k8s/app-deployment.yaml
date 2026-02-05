@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-api
+  template:
+    metadata:
+      labels:
+        app: mongo-api
+    spec:
+      containers:
+        - name: mongo-api
+          image: aharonsegal/mongo-container:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000

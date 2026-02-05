@@ -1,0 +1,10 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: mongo-api
+spec:
+  to:
+    kind: Service
+    name: mongo-api-service
+  port:
+    targetPort: http
