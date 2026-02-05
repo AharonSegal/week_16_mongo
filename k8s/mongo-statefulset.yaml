@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: mongodb
 spec:
-  serviceName: mongodb-headless
+  serviceName: mongodb
   replicas: 1
   selector:
     matchLabels:
@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo:7
+          image: aharonsegal/mongo:7
+          imagePullPolicy: Always
           ports:
             - containerPort: 27017
           args: ["--bind_ip_all"]
