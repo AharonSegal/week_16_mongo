@@ -14,13 +14,18 @@ git add .
 git commit -m "initial commit"
 git push -u origin main
 
+pip install fastapi uvicorn[standard]
+
 # ╔══════════════════════════════════════════════════════╗
 # ║   BASIC GIT COMMANDS                                 ║
 # ╚══════════════════════════════════════════════════════╝
 """
 git add .                    
-git commit -m " "      
+git commit -m "base"      
 git push                     
+
+uvicorn main:app --reload
+uvicorn app.main:app --reload
 
 # ╔══════════════════════════════════════════════════════╗
 # ║   GIT BRANCH WORKFLOW                                ║
@@ -30,18 +35,18 @@ git push
 git branch
 
 # Create a new branch
-git checkout -b title/branch_purpose
-git checkout -b aharon/k8s
+git checkout -b olympic_table/csv_to_sql
+git checkout aharon
 
 # Stage changes
 git add .
 
 # Commit changes
-git commit -m "app main"
+git commit -m "Descriptive commit message"
 
 # Push branch to remote
 git push -u origin title/branch_purpose
-git push -u origin aharon/dev
+git push -u origin aharon/server-b
 
 # Switch between branches
 git checkout main
@@ -50,7 +55,7 @@ git checkout title/branch_purpose
 # Merge branch into main
 git checkout main
 git pull                  # ensure main is up-to-date
-git merge aharon/local
+git merge aharon
 
 # Delete branch (optional)
 git branch -d title/branch_purpose        # local
