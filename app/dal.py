@@ -1,5 +1,5 @@
 from connection import collection
-from pprint import pprint
+from connection import collection
 
 # 1 -----------------
 def get_engineering_high_salary_employees():
@@ -8,28 +8,22 @@ def get_engineering_high_salary_employees():
     documents = collection.find(filter_query, projection)
     return list(documents)
 
-# pprint(get_engineering_high_salary_employees())
-
 # 2 -----------------
 def get_employees_by_age_and_role():
     filter_query = {
         "age": {"$gte": 30, "$lte": 45},
         "job_role.title": {"$in": ["Engineer", "Specialist"]},
     }
-    # projection: ALL
-    documents = collection.find(filter_query)
+    projection = {"_id": 0}
+    documents = collection.find(filter_query, projection)
     return list(documents)
-
-# pprint(get_employees_by_age_and_role())
 
 # 3 -----------------
 def get_top_seniority_employees_excluding_hr():
     filter_query = {"job_role.department": {"$ne": "HR"}}
-    # projection: ALL
-    documents = collection.find(filter_query).sort("years_at_company", -1).limit(7)
+    projection = {"_id": 0}
+    documents = collection.find(filter_query, projection).sort("years_at_company", -1).limit(7)
     return list(documents)
-
-# pprint(get_top_seniority_employees_excluding_hr())
 
 # 4 -----------------
 def get_employees_by_age_or_seniority():
@@ -43,31 +37,25 @@ def get_employees_by_age_or_seniority():
     documents = collection.find(filter_query, projection)
     return list(documents)
 
-# pprint(get_employees_by_age_or_seniority())
-
 # 5 -----------------
 def get_managers_excluding_departments():
     filter_query = {
         "job_role.title": "Manager",
         "job_role.department": {"$nin": ["Sales", "Marketing"]},
     }
-    # projection: ALL
-    documents = collection.find(filter_query)
+    projection = {"_id": 0}
+    documents = collection.find(filter_query, projection)
     return list(documents)
-
-# pprint(get_managers_excluding_departments())
 
 # 6 -----------------
 def get_employees_by_lastname_and_age():
     filter_query = {
         "$or": [
-            {"name": {"$regex": "Wright$"},},
-            {"name": {"$regex": "Nelson$"},},
+            {"name": {"$regex": "Wright$"}},
+            {"name": {"$regex": "Nelson$"}},
         ],
         "age": {"$lt": 35},
     }
     projection = {"_id": 0, "name": 1, "age": 1, "job_role.department": 1}
     documents = collection.find(filter_query, projection)
     return list(documents)
-
-# pprint(get_employees_by_lastname_and_age())
